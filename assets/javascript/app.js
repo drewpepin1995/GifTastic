@@ -15,12 +15,46 @@ let actors = [
 
 ]
 
-$(document).ready(function() {
-
+function renderActors () {
     for (var i = 0; i<actors.length; i++) {
         let actorBtns = $("<button>" + actors[i] + "</button>");
         $("#actorBtns").append(actorBtns);
+
+};
+       
+};
+
+
+
+$(document).ready(function() {
+
+    renderActors();
+
+    $("#addButton").on("click", function(){
+       
+        if ($("#actorForm").val() === ('')) {
+            alert("Please enter an actor!")
+
+        } else {
+        actors.push($("#actorForm").val());
+        let newActor = $("#actorForm").val();
+        let newButton = $("<button>");
+        let newActorButton = newButton.text(newActor);
+        $("#actorBtns").append(newActorButton);
+        $("#actorForm").val('');
+        };
+
         
-        
-    }
+    });
+
+    $(actorBtns).on("click", function(){
+        console.log(this);
+    });
+    
+
+    
+
+    
+
+    
 });
