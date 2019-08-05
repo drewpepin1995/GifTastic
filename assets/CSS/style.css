@@ -12,7 +12,19 @@ button + button {
     margin: 0.5rem;
 }
 
-img {
-    width: 25%;
+.gifImageDiv {
+    float: right;
+    width: 30%;
+    height: auto;
+    margin: auto;
+    
 }
+
+img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
 

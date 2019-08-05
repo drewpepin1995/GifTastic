@@ -83,6 +83,7 @@ $(document).ready(function () {
     
               gifDiv.append(p);
               gifDiv.append(personImage);
+              gifDiv.addClass('gifImageDiv');
     
               $("#gifDiv").append(gifDiv);
     
@@ -149,6 +150,7 @@ $(document).ready(function () {
 
           gifDiv.append(p);
           gifDiv.append(personImage);
+          gifDiv.addClass('gifImageDiv')
 
           $("#gifDiv").append(gifDiv);
 
