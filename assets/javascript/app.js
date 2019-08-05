@@ -51,61 +51,61 @@ $(document).ready(function () {
 
       $(".actor").on("click", function () {
         $("#gifDiv").empty();
-    
+
         var actor = $(this).attr("class");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
           actor + "&api_key=fWfICpURY2bv4yIJEwHUvj6IhgVd2LmX&limit=10";
-    
+
         $.ajax({
           url: queryURL,
           method: "GET"
         })
           .then(function (response) {
             var results = response.data;
-    
-    
+
+
             for (var i = 0; i < results.length; i++) {
               var gifDiv = $("<div>");
-    
+
               var rating = results[i].rating;
-    
+
               var p = $("<p>").text("Rating: " + rating);
-    
+
               let animated = results[i].images.fixed_height.url;
               let still = results[i].images.fixed_height_still.url;
-    
+
               var personImage = $("<img>");
               personImage.attr("src", still);
               personImage.attr("data-still", still)
               personImage.attr("data-animate", animated)
               personImage.attr("data-state", "still");
               personImage.addClass("actor-image");
-    
+
               gifDiv.append(p);
               gifDiv.append(personImage);
               gifDiv.addClass('gifImageDiv');
-    
+
               $("#gifDiv").append(gifDiv);
-    
+
               console.log(response);
             };
-    
-            $("img").on("click", function(){
+
+            $("img").on("click", function () {
               let state = $(this).attr("data-state");
-          
-              if (state === "still"){
+
+              if (state === "still") {
                 $(this).attr("src", $(this).attr("data-animate"));
-                $(this).attr("data-state","animate");
+                $(this).attr("data-state", "animate");
               } else {
                 $(this).attr("src", $(this).attr("data-still"));
                 $(this).attr("data-state", "still");
               }
-          
+
             });
-          
-    
+
+
           });
-    
+
       });
 
     };
@@ -157,25 +157,25 @@ $(document).ready(function () {
           console.log(response);
         };
 
-        $("img").on("click", function(){
+        $("img").on("click", function () {
           let state = $(this).attr("data-state");
-      
-          if (state === "still"){
+
+          if (state === "still") {
             $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state","animate");
+            $(this).attr("data-state", "animate");
           } else {
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
           }
-      
+
         });
-      
+
 
       });
 
   });
 
-  
+
 
 
 });
