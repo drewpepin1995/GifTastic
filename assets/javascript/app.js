@@ -13,7 +13,12 @@ $(document).ready(function () {
     "Denzel Washington",
     "Chris Evans",
     "Ben Affleck",
-    "Taylor Kitsch"
+    "Taylor Kitsch",
+    "Chris Farley",
+    "Chris Rock",
+    "Zac Efron",
+    "Michael B Jordan",
+    "David Spade"
 
   ]
 
