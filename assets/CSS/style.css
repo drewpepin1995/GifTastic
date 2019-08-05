@@ -13,10 +13,12 @@ button + button {
 }
 
 .gifImageDiv {
-    float: right;
+    float: left;
     width: 30%;
     height: auto;
-    margin: auto;
+    margin: 0.5rem;
+    padding: 0;
+
     
 }
 
