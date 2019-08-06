@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
 
-  
+
 
   let actors = [
     "Vince Vaughn",
@@ -75,55 +75,55 @@ $(document).ready(function () {
     } else {
       actors.push($("#actorForm").val());
 
+      newActorButton();
+      $(".newActor").on("click", function () {
+        $("#gifDiv").empty();
+
+        var actor = $(this).attr("class");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+          actor + "&api_key=fWfICpURY2bv4yIJEwHUvj6IhgVd2LmX&limit=10";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+          .then(function (response) {
+            var results = response.data;
+
+
+            for (var i = 0; i < results.length; i++) {
+              var gifDiv = $("<div>");
+
+              var rating = results[i].rating;
+
+              var p = $("<p>").text("Rating: " + rating);
+
+              let animated = results[i].images.fixed_height.url;
+              let still = results[i].images.fixed_height_still.url;
+
+              var personImage = $("<img>");
+              personImage.attr("src", still);
+              personImage.attr("data-still", still)
+              personImage.attr("data-animate", animated)
+              personImage.attr("data-state", "still");
+              personImage.addClass("actor-image");
+
+              gifDiv.append(p);
+              gifDiv.append(personImage);
+              gifDiv.addClass('gifImageDiv')
+
+              $("#gifDiv").append(gifDiv);
+
+              console.log(response);
+            };
+
+            animateImage();
+
+
+          });
+
+      });
     };
-    newActorButton();
-    $(".newActor").on("click", function () {
-      $("#gifDiv").empty();
-
-      var actor = $(this).attr("class");
-      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        actor + "&api_key=fWfICpURY2bv4yIJEwHUvj6IhgVd2LmX&limit=10";
-
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-        .then(function (response) {
-          var results = response.data;
-
-
-          for (var i = 0; i < results.length; i++) {
-            var gifDiv = $("<div>");
-
-            var rating = results[i].rating;
-
-            var p = $("<p>").text("Rating: " + rating);
-
-            let animated = results[i].images.fixed_height.url;
-            let still = results[i].images.fixed_height_still.url;
-
-            var personImage = $("<img>");
-            personImage.attr("src", still);
-            personImage.attr("data-still", still)
-            personImage.attr("data-animate", animated)
-            personImage.attr("data-state", "still");
-            personImage.addClass("actor-image");
-
-            gifDiv.append(p);
-            gifDiv.append(personImage);
-            gifDiv.addClass('gifImageDiv')
-
-            $("#gifDiv").append(gifDiv);
-
-            console.log(response);
-          };
-
-          animateImage();
-
-
-        });
-
-    });
 
 
   };
@@ -133,7 +133,7 @@ $(document).ready(function () {
 
 
 
-  
+
   function actorClick() {
 
 
@@ -196,7 +196,7 @@ $(document).ready(function () {
   $("#addButton").on("click", function () {
 
     renderNewActors();
-    
+
 
   });
 
