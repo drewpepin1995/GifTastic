@@ -45,13 +45,13 @@ $(document).ready(function () {
     } else {
       actors.push($("#actorForm").val());
       let newActor = $("#actorForm").val();
-      let newButton = $("<button>").addClass(newActor).addClass("actor")
+      let newButton = $("<button>").addClass(newActor).addClass("newActor")
 
       let newActorButton = newButton.text(newActor);
       $("#actorBtns").append(newActorButton);
       $("#actorForm").val('');
 
-      $(".actor").on("click", function () {
+      $(".newActor").on("click", function () {
         $("#gifDiv").empty();
 
         var actor = $(this).attr("class");
