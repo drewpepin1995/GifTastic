@@ -32,6 +32,8 @@ $(document).ready(function () {
   };
 
 
+
+
   renderActors();
 
   $("#addButton").on("click", function () {
