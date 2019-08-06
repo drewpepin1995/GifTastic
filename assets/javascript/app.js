@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+
+  
+
   let actors = [
     "Vince Vaughn",
     "Will Ferrell",
@@ -22,6 +25,7 @@ $(document).ready(function () {
 
   ]
 
+
   function renderActors() {
     for (var i = 0; i < actors.length; i++) {
       let actorBtns = $("<button>" + actors[i] + "</button>").addClass(actors[i]).addClass("actor");
@@ -31,6 +35,38 @@ $(document).ready(function () {
 
   };
 
+
+
+  function newActorButton() {
+    let newActor = $("#actorForm").val();
+    let newButton = $("<button>").addClass(newActor).addClass("newActor")
+
+    let newActorButton = newButton.text(newActor)
+    $("#actorBtns").append(newActorButton);
+    $("#actorForm").val('');
+  }
+
+
+
+  function animateImage() {
+    $("img").on("click", function () {
+      let state = $(this).attr("data-state");
+
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+
+    });
+  }
+
+
+
+
+
   function renderNewActors() {
 
     if ($("#actorForm").val() === ('')) {
@@ -38,25 +74,9 @@ $(document).ready(function () {
 
     } else {
       actors.push($("#actorForm").val());
-      let newActor = $("#actorForm").val();
-      let newButton = $("<button>").addClass(newActor).addClass("newActor")
 
-      let newActorButton = newButton.text(newActor);
-      $("#actorBtns").append(newActorButton);
-      $("#actorForm").val('');
-
-    }
-  };
-
-
-
-
-  renderActors();
-
-  $("#addButton").on("click", function () {
-
-    renderNewActors();
-
+    };
+    newActorButton();
     $(".newActor").on("click", function () {
       $("#gifDiv").empty();
 
@@ -91,25 +111,14 @@ $(document).ready(function () {
 
             gifDiv.append(p);
             gifDiv.append(personImage);
-            gifDiv.addClass('gifImageDiv');
+            gifDiv.addClass('gifImageDiv')
 
             $("#gifDiv").append(gifDiv);
 
             console.log(response);
           };
 
-          $("img").on("click", function () {
-            let state = $(this).attr("data-state");
-
-            if (state === "still") {
-              $(this).attr("src", $(this).attr("data-animate"));
-              $(this).attr("data-state", "animate");
-            } else {
-              $(this).attr("src", $(this).attr("data-still"));
-              $(this).attr("data-state", "still");
-            }
-
-          });
+          animateImage();
 
 
         });
@@ -117,73 +126,82 @@ $(document).ready(function () {
     });
 
 
+  };
 
 
 
 
-  });
 
 
-  $(".actor").on("click", function () {
-    $("#gifDiv").empty();
-
-    var actor = $(this).attr("class");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      actor + "&api_key=fWfICpURY2bv4yIJEwHUvj6IhgVd2LmX&limit=10";
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      .then(function (response) {
-        var results = response.data;
+  
+  function actorClick() {
 
 
-        for (var i = 0; i < results.length; i++) {
-          var gifDiv = $("<div>");
+    $(".actor").on("click", function () {
+      $("#gifDiv").empty();
 
-          var rating = results[i].rating;
+      var actor = $(this).attr("class");
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        actor + "&api_key=fWfICpURY2bv4yIJEwHUvj6IhgVd2LmX&limit=10";
 
-          var p = $("<p>").text("Rating: " + rating);
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function (response) {
+          var results = response.data;
 
-          let animated = results[i].images.fixed_height.url;
-          let still = results[i].images.fixed_height_still.url;
 
-          var personImage = $("<img>");
-          personImage.attr("src", still);
-          personImage.attr("data-still", still)
-          personImage.attr("data-animate", animated)
-          personImage.attr("data-state", "still");
-          personImage.addClass("actor-image");
+          for (var i = 0; i < results.length; i++) {
+            var gifDiv = $("<div>");
 
-          gifDiv.append(p);
-          gifDiv.append(personImage);
-          gifDiv.addClass('gifImageDiv')
+            var rating = results[i].rating;
 
-          $("#gifDiv").append(gifDiv);
+            var p = $("<p>").text("Rating: " + rating);
 
-          console.log(response);
-        };
+            let animated = results[i].images.fixed_height.url;
+            let still = results[i].images.fixed_height_still.url;
 
-        $("img").on("click", function () {
-          let state = $(this).attr("data-state");
+            var personImage = $("<img>");
+            personImage.attr("src", still);
+            personImage.attr("data-still", still)
+            personImage.attr("data-animate", animated)
+            personImage.attr("data-state", "still");
+            personImage.addClass("actor-image");
 
-          if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-          } else {
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-          }
+            gifDiv.append(p);
+            gifDiv.append(personImage);
+            gifDiv.addClass('gifImageDiv')
+
+            $("#gifDiv").append(gifDiv);
+
+            console.log(response);
+          };
+
+          animateImage();
+
 
         });
 
+    });
 
-      });
+  };
+
+
+
+
+
+  renderActors();
+
+  $("#addButton").on("click", function () {
+
+    renderNewActors();
+    
 
   });
 
 
 
+  actorClick();
 
 });
