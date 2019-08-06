@@ -5,5 +5,5 @@
 <li>The buttons are appended to the div in the header of the body.</li>
 <li>You are given the option to add an actor, which will take the value of the form (whatever you type in) and create a new button and append it to the other buttons in the buttons div. It will be given a class just like the buttons in the array. </li>
 <li>Whenever a button is clicked, it will display 10 gifs based on the class name of the button. (So it will display Adam Sandler gifs if the Adam Sandler button is pressed). </li>
-<li>The gifs will load as static images, but when the images are clicked, they will be animated and the gifs will play. If you wish you pause the gif again, just reclick the image.</li>
-<li>When a button is pressed, the image div is emptied and replaced by whatever buttons' gifs are pressed after. </li>
+<li>The gifs will load as static images, but when the images are clicked, they will be animated and the gifs will play. If you wish to pause the gif again, just reclick the image, and it will pause the animation.</li>
+<li>When a new button is pressed, the image div is emptied and replaced by whatever buttons' gifs are pressed. </li>
