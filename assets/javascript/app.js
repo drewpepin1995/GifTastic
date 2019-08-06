@@ -68,8 +68,8 @@ $(document).ready(function () {
 
 
   function renderNewActors() {
-
-    if ($("#actorForm").val() === ('')) {
+    let actorLength = $("#actorForm").val();
+    if (actorLength.length < 8) {
       alert("Please enter an actor!")
 
     } else {
