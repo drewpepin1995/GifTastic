@@ -1,6 +1,7 @@
 button {
-     padding: 1rem;
+     padding: 0.5rem;
      margin: auto;
+     border: 2px solid teal;
 
 }
 
@@ -18,6 +19,7 @@ button + button {
     height: auto;
     margin: 0.5rem;
     padding: 0;
+    border: 3px solid white;
 
     
 }
@@ -28,5 +30,8 @@ img {
     margin: 0;
     padding: 0;
 }
-
+body {
+    background-image: url(../images/hollywood.jpg);
+    background-size: cover;
+}
 
