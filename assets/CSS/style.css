@@ -27,11 +27,16 @@ button + button {
 img {
     width: 100%;
     height: 200px;
-    margin: 0;
+    margin: auto;
     padding: 0;
 }
 body {
     background-image: url(../images/hollywood.jpg);
     background-size: cover;
+}
+
+p {
+    background-color: white;
+    padding: auto;
 }
 
